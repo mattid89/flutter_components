@@ -11,9 +11,10 @@ class _InputPageState extends State<InputPage>
   String _nombre = '';
   String _email = '';
   String _password = '';
-  // DateTime _fecha = DateTime.now();
   String _fecha = '';
   TextEditingController _inputFieldDateController = new TextEditingController();
+  List<String> _poderes = ['Volar', 'Rayos X', 'Super Aliento', 'Super Fuerza'];
+  String _poder = '';
 
   @override
   void initState() {
@@ -43,6 +44,8 @@ class _InputPageState extends State<InputPage>
           _crearInputPassword(), 
           Divider(),
           _crearInputFecha(), 
+          Divider(),
+          _crearInputDropDown(), 
           Divider(),
           _crearPersona(),
         ],
@@ -109,6 +112,7 @@ class _InputPageState extends State<InputPage>
       ),
       onChanged: (value) => setState(() {
         _password = value;
+        print(_password);
       }),
     );
   }
@@ -138,22 +142,59 @@ class _InputPageState extends State<InputPage>
       context: context, 
       initialDate: DateTime.now(), 
       firstDate: DateTime(2018), 
-      lastDate: DateTime(2025));
+      lastDate: DateTime(2025),
+      locale: Locale('es', 'ES')
+    );
 
     if (picked != null) {
       setState(() {
-        _fecha = picked.toIso8601String();
+        _fecha = picked.toString();
         _inputFieldDateController.text = _fecha;
       });
     }
   }
 
+  List<DropdownMenuItem<String>> getDropDownList() {
+    List<DropdownMenuItem<String>> lista = new List();
+    _poderes.forEach((poder) {
+      lista.add(
+        DropdownMenuItem(
+          child: Text(poder),
+          value: poder,
+        )
+      );
+    });
+    return lista;
+  }
+
+  Widget _crearInputDropDown() {
+    return DropdownButtonFormField(
+      items: getDropDownList(),
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0)
+        ),
+        hintText: 'Poderes',
+        labelText: 'Poderes',
+        // helperText: 'La Contraseña',
+        suffixIcon: Icon(Icons.offline_bolt),
+        icon: Icon(Icons.flash_on)
+      ),
+      onChanged: (value) {
+        setState(() {
+          _poder = value;
+        });
+      },
+    );
+  }
+
 
   Widget _crearPersona() {
     return ListTile(
-             title: Text('El nombre es $_nombre'),
-             subtitle: Text('El emial es $_email'),
-           );
+      title: Text('El nombre es $_nombre'),
+      subtitle: Text('El emial es $_email'),
+      trailing: Text('$_poder'),
+    );
   }
 
 }
