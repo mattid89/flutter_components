@@ -29,7 +29,12 @@
         {
             "ruta": "slider",
             "icon": "tune",
-            "texto": "Sliders"
+            "texto": "Slider - Checkbox - Switch(toggle)"
+        },
+        {
+            "ruta": "lista",
+            "icon": "list",
+            "texto": "Lista - Scroll"
         }
     ]
 }

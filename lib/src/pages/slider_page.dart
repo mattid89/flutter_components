@@ -11,6 +11,8 @@ class _SliderPageState extends State<SliderPage>
 
   double _valorSlider = 10.0;
 
+  bool _bloquearSlider = false;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +36,8 @@ class _SliderPageState extends State<SliderPage>
         child: Column(
           children: <Widget>[
             _crearSlider(),
+            _crearCheckBox(),
+            _crearSwitch(),
             Expanded(child: _crearImagen()),
           ],
         ),
@@ -48,8 +52,8 @@ class _SliderPageState extends State<SliderPage>
       // divisions: 20,
       value: _valorSlider,
       min: 10.0,
-      max: 400.0,
-      onChanged: (valor) {
+      max: 250.0,
+      onChanged: (_bloquearSlider) ? null : (valor) {
         setState(() {
           _valorSlider = valor;
         });
@@ -65,5 +69,27 @@ class _SliderPageState extends State<SliderPage>
             width: _valorSlider,
             fit: BoxFit.contain,
         );
+  }
+
+  Widget _crearCheckBox() {
+    return CheckboxListTile(
+      title: Text('Bloquear Imagen'),
+      value: _bloquearSlider, 
+      onChanged: (valor) {
+      setState(() {
+        _bloquearSlider = valor;
+      });
+    });
+  }
+
+  Widget _crearSwitch() {
+    return SwitchListTile(
+      title: Text('Bloquear Imagen'),
+      value: _bloquearSlider, 
+      onChanged: (valor) {
+      setState(() {
+        _bloquearSlider = valor;
+      });
+    });
   }
 }
