@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ExpandedPage extends StatelessWidget {
@@ -39,8 +41,31 @@ class ExpandedPage extends StatelessWidget {
                 ),
               ],
             ),
+ 
+                Expanded(
+                  flex: 1,
+                  
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 18,
+                    padding: const EdgeInsets.all(8),
+                    itemBuilder:(_, index) {
+                      return Container(
+                        height: 10,
+                        color: Color.fromRGBO(
+                          Random().nextInt(255), 
+                          Random().nextInt(255), 
+                          Random().nextInt(255), 
+                          1
+                        ),
+                        child: const Center(child: Text('Entry A')),
+                      );
+                    },
+                  ),
+                ),
+ 
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 color: Colors.amber,
                 width: 100,
@@ -52,7 +77,7 @@ class ExpandedPage extends StatelessWidget {
               height: 50,
             ),
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 color: Colors.amber,
                 width: 100,
