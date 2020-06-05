@@ -9,6 +9,7 @@ final _icons = <String, IconData> {
   'input': Icons.input,
   'tune': Icons.tune,
   'list': Icons.list,
+  'aspect_ratio': Icons.aspect_ratio,
 };
 
 Icon getIcon( String iconName ) {

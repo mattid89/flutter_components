@@ -72,7 +72,7 @@ class _ListaPageState extends State<ListaPage> {
     setState(() {});
   }
 
-  Future<dynamic> fetchData() {
+  Future<dynamic> fetchData() async {
     _isLoading = true;
     setState(() {});
 

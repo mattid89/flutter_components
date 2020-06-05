@@ -35,6 +35,11 @@
             "ruta": "lista",
             "icon": "list",
             "texto": "Lista - Scroll"
+        },
+        {
+            "ruta": "expanded",
+            "icon": "aspect_ratio",
+            "texto": "Expanded Container"
         }
     ]
 }
